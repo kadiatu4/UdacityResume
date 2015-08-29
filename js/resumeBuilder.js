@@ -1,23 +1,8 @@
-// internationalizeButton
-//
-// function inName(name) {
-//
-//    var name = name;
-//    name = name.trim().split(" ");
-//    console.log(name);
-//    name[0] = name[0].slice(0,1).toUpperCase() + name[0].slice(1).toLowerCase();
-//    name[1] = name[1].toUpperCase();
-//
-//    return name[0] + " " + name[1];
-// };
-// $("#main").append(internationalizeButton);
-//
-// inName(name);
-//bio function
+
 var bio = {
     "name": "Kadi Diallo",
     "role": "Front-End Developer",
-    "contact": {
+    "contacts": {
         "mobile": "646-595-8378",
         "email": "Kadiatu4@gmail.com",
         "github": "Kadiatu4",
@@ -26,18 +11,12 @@ var bio = {
     },
     "welcomeMessage": "Hello I'm Kadi and I am a Front-End Web Developer",
     "skills": [
-        {
-            "Languages": "Languages:<br>JavaScript, Python, HTML5, CSS3.<br>"
-        },
-        {
-            "Frameworks": "Frameworks/library:<br> jQuery, Bootstrap, Jasmine, Grunt, webapp2, jinja2.<br>"
-        },
-        {
-            "Other": "Other:<br>Git/GitHub, Brackets, GIMP."
-        }
+              "Languages:JavaScript, Python, HTML5, CSS3.",
+              "Frameworks/library: jQuery, Bootstrap, Grunt.",
+              "Other:Git/GitHub, Brackets, GIMP."
     ],
     "bioPic": "images/me.jpg"
-}
+};
 
 bio.display = function() {
 var formattedName = HTMLheaderName.replace("%data%", bio.name);
@@ -52,27 +31,21 @@ var formattedWelcomeMsg = HTMLwelcomeMsg.replace("%data%", bio.welcomeMessage);
 $("#header").append(formattedWelcomeMsg);
 
 
-var formattedMobile = HTMLmobile.replace("%data%", bio.contact.mobile);
-var formattedEmail = HTMLemail.replace("%data%", bio.contact.email);
-var formattedGithub = HTMLgithub.replace("%data%", bio.contact.github);
-var formattedLocation = HTMLlocation.replace("%data%", bio.contact.location);
+var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
+var formattedEmail = HTMLemail.replace("%data%", bio.contacts.email);
+var formattedGithub = HTMLgithub.replace("%data%", bio.contacts.github);
+var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
 var allContacts = formattedMobile + formattedEmail + formattedGithub + formattedLocation;
 
 $("#topContacts").append(allContacts);
 $("#footerContacts").append(allContacts);
+$("#header").append(HTMLskillsStart);
 
-if(bio.skills.length > 0) {
-  $("#header").append(HTMLskillsStart);
-
-  var formattedSkill = HTMLskills.replace("%data%",bio.skills[0].Languages);
+  for (i in bio.skills){
+  var formattedSkill = HTMLskills.replace("%data%",bio.skills[i]);
   $("#skills").append(formattedSkill);
-  var formattedSkill = HTMLskills.replace("%data%",bio.skills[1].Frameworks);
-  $("#skills").append(formattedSkill);
-  var formattedSkill = HTMLskills.replace("%data%", bio.skills[2].Other);
-  $("#skills").append(formattedSkill);
-
-}
-}
+  }
+};
 bio.display();
 
 //Education function
@@ -81,14 +54,14 @@ var education = {
     "schools": [
         {
             "name": "Hyde Leadership Charter School",
-            "city": "New York City, NY",
+            "location": "730 Bryant Ave, Bronx, NY",
             "degree": "Advanced Regents Diploma",
             "majors": "N/A",
             "dates": "2012-2015"
         },
         {
             "name": "CUNY York College",
-            "city": "New York City, NY",
+            "location": "94-20 Guy R Brewer Blvd, Jamaica, NY 11451",
             "degree": "BA",
             "majors": "Computer Science",
             "dates": "2015-2019"
@@ -116,7 +89,7 @@ var education = {
             "description": "5 months of intensive Computer Science training on Web design,<br>algorithms, JavaScript and jQuery. "
         }
     ]
-}
+};
 
  education.display = function() {
    //loop for Schools
@@ -127,7 +100,7 @@ var education = {
   $(".education-entry:last").append(formattedSchoolName);
   var formattedSchoolDate = HTMLschoolDates.replace("%data%", education.schools[i].dates);
     $(".education-entry:last").append(formattedSchoolDate);
-  var formattedSchoolLocation = HTMLschoolLocation.replace("%data%", education.schools[i].city);
+  var formattedSchoolLocation = HTMLschoolLocation.replace("%data%", education.schools[i].location);
     $(".education-entry:last").append(formattedSchoolLocation);
     var formattedSchoolMajor = HTMLschoolMajor.replace("%data%", education.schools[i].majors);
       $(".education-entry:last").append(formattedSchoolMajor);
@@ -164,14 +137,14 @@ for (i in education.onlineCourses){
        var formattedprogramDescription = HTMLprogramDescription.replace("%data%", education.Programs[i].description);
        $(".education-entry:last").append(formattedprogramDescription);
  }
-}
+};
  education.display();
 
 var work = {
     "jobs": [
         {
             "title": "Awky Talky",
-            // "city" : "New York, NY",
+            "location" : "New York, NY",
             "position": "Co-Founder and Cheif of Design and User Interface",
             "dates": "July 2015 - Present",
             "description": "Our app, Awky Talky, instantly generates conversation starters, ranging<br> from casual to professional, based on the category selected by the user<br> allowing them to get over awkward moments in conversation."
@@ -179,7 +152,7 @@ var work = {
 
     ]
 
-}
+};
 work.display = function() {
 
 for (i in work.jobs)	{
@@ -189,15 +162,15 @@ for (i in work.jobs)	{
 	$(".work-entry:last").append(formattedworkTitle);
   var formattedworkPosition = HTMLworkPostion.replace("%data%",work.jobs[i].position);
   $(".work-entry:last").append(formattedworkPosition);
-//  var formattedworkLocation = HTMLworkLocation.replace("%data%", work.jobs[i].city);
-  //  $(".education-entry:last").append(formattedworkLocation);
+  var formattedworkLocation = HTMLworkLocation.replace("%data%", work.jobs[i].location);
+  $(".work-entry:last").append(formattedworkLocation);
 	var formattedworkDates = HTMLworkDates.replace("%data%",work.jobs[i].dates);
 	$(".work-entry:last").append(formattedworkDates);
 	var formattedworkDescription = HTMLworkDescription.replace("%data%",work.jobs[i].description);
 	$(".work-entry:last").append(formattedworkDescription);
 
 	}
-}
+};
 
 work.display();
 
@@ -229,7 +202,7 @@ var projects = {
       ]
     }
   ]
-}
+};
 
 projects.display = function(){
  $("#projects").append(HTMLprojectStart);
@@ -249,14 +222,14 @@ projects.display = function(){
    }
 
  }
-}
+};
 projects.display();
 //Map
 
 $("#map-div").append(googleMap);
 
 
-/// this is for the navbar 
+/// this is for the navbar
 $(function() {
   var navPosition = $('#nav-bar').offset().top -10;
   var navBar = document.getElementById('nav-bar');
